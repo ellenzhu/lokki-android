@@ -30,6 +30,10 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import cc.softwarefactory.lokki.android.MainApplication;
 import cc.softwarefactory.lokki.android.R;
 import cc.softwarefactory.lokki.android.datasources.contacts.ContactDataSource;
@@ -48,7 +52,7 @@ import cc.softwarefactory.lokki.android.utilities.PreferenceUtils;
 import cc.softwarefactory.lokki.android.utilities.ServerApi;
 import cc.softwarefactory.lokki.android.utilities.Utils;
 import cc.softwarefactory.lokki.android.utilities.gcm.GcmHelper;
-
+import cc.softwarefactory.lokki.android.variabilities.Logout;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -69,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     //used in test case
     public static Boolean flag;
+
+    //Initial values of variablities.
+    public static Boolean buttonVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -264,8 +271,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             } else if (selectedOption == -10) { // Add contacts screen
                 getMenuInflater().inflate(R.menu.add_contact, menu);
             }
+            //***implement logout feature variability
+
             getMenuInflater().inflate(R.menu.main_activity_actions, menu);
-            menu.findItem(R.id.action_logout).setVisible(true);
+            //the value should be read from outputs of script.
+          //  if(R.variabilities.LogoutButton != null)
+            String value = getResources().getString(R.string.LogoutButton);
+            Log.e(TAG, "value" + value);
+            if(value == "true")
+                buttonVisible = true;
+            Logout.setVisibleValue(buttonVisible);
+            menu.findItem(R.id.action_logout).setVisible(Logout.getVisibleValue());
         }
         return super.onPrepareOptionsMenu(menu);
     }
