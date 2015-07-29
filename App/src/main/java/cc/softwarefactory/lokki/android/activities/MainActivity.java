@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
     private int selectedOption = 0;
-
     private ContactDataSource mContactDataSource;
 
     // TODO: make non static, put in shared prefs
@@ -275,7 +274,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
             getMenuInflater().inflate(R.menu.main_activity_actions, menu);
             //the value should be read from outputs of script.
-          //  if(R.variabilities.LogoutButton != null)
             String value = getResources().getString(R.string.LogoutButton);
             Log.e(TAG, "value" + value);
             if(value == "true")
@@ -334,11 +332,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             flag = true;}
         else{
             flag = false;}
+        //clear the contacts list
+       // currentUser = PreferenceUtils.getString(this, PreferenceUtils.KEY_USER_ACCOUNT);
+        //Log.e(TAG,"currentUser: " + currentUser);
+        //if(currentUser == ContactsFragment.userAccount){
+            //Collections.sort(peopleList);
+          //  Log.e(TAG,"hello");}
+
         Log.e(TAG, "test: " + flag);
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
-
-
     }
 
     private void toggleVisibility() {

@@ -75,7 +75,6 @@ public class AddContactsFragment extends Fragment {
         avatarLoader = new AvatarLoader(context);
         inputSearch = (EditText) rootView.findViewById(R.id.add_contact_search);
         clearFilter = (Button) rootView.findViewById(R.id.clear_filter);
-
         return rootView;
     }
 
@@ -283,6 +282,8 @@ public class AddContactsFragment extends Fragment {
                             final Context context = getContext();
                             String title = getString(R.string.add_contact);
                             String message = getString(R.string.add_contact_dialog_save, email);
+                            //map the email and contacts holder, then pass to addlocalcontact.
+
                             new AlertDialog.Builder(context)
                                     .setTitle(title)
                                     .setMessage(message)

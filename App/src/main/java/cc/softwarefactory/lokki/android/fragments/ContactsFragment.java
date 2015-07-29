@@ -80,6 +80,7 @@ public class ContactsFragment extends Fragment {
         AnalyticsUtils.screenHit(getString(R.string.contacts));
     }
 
+
     private void getPeopleThatCanSeeMe() {
 
         try {
@@ -125,6 +126,7 @@ public class ContactsFragment extends Fragment {
                 String name = Utils.getNameFromEmail(context, email);
                 mapping.put(name, email);
                 Log.e(TAG, "Local contact: " + email);
+                Log.e(TAG, "name: " + name );
             }
 
         } catch (JSONException e) {
@@ -134,6 +136,7 @@ public class ContactsFragment extends Fragment {
         peopleList.addAll(mapping.keySet());
         Collections.sort(peopleList);
         Log.e(TAG, "Contact list: " + peopleList);
+
     }
 
     private void setListAdapter() {
