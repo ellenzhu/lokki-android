@@ -332,12 +332,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             flag = true;}
         else{
             flag = false;}
-        //clear the contacts list
-       // currentUser = PreferenceUtils.getString(this, PreferenceUtils.KEY_USER_ACCOUNT);
-        //Log.e(TAG,"currentUser: " + currentUser);
-        //if(currentUser == ContactsFragment.userAccount){
-            //Collections.sort(peopleList);
-          //  Log.e(TAG,"hello");}
 
         Log.e(TAG, "test: " + flag);
         Intent intent = new Intent(this, SignUpActivity.class);
