@@ -31,8 +31,6 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 import cc.softwarefactory.lokki.android.MainApplication;
 import cc.softwarefactory.lokki.android.R;
@@ -97,8 +95,23 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             actionBar.setTitle(mTitle);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        execScript();
+
     }
 
+    public void execScript(){
+        try{
+            Log.e(TAG, "I am in execute function");
+            Runtime rt = Runtime.getRuntime();
+            Process proc1 = rt.exec("chmod +x " + this.getDir("raw",0) + "/editxml.sh");
+            Process proc2 = rt.exec("sh " + this.getDir("raw",0) + "/editxml.sh");
+            Log.e(TAG, "I am in end of execute function");
+        } catch(Throwable t)
+        {
+            t.printStackTrace();
+        }
+
+    }
 
     @Override
     protected void onStart() {
