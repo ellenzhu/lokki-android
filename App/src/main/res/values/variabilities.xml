@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="LogoutButton" type="string">true</item>
-    <item name="theme" type="string">false</item>
+    <string name="LogoutButton">true</string>
+    <string name="theme">false</string>
 </resources>

@@ -30,7 +30,12 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import cc.softwarefactory.lokki.android.MainApplication;
 import cc.softwarefactory.lokki.android.R;
@@ -95,23 +100,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             actionBar.setTitle(mTitle);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        execScript();
 
     }
 
-    public void execScript(){
-        try{
-            Log.e(TAG, "I am in execute function");
-            Runtime rt = Runtime.getRuntime();
-            Process proc1 = rt.exec("chmod +x " + this.getDir("raw",0) + "/editxml.sh");
-            Process proc2 = rt.exec("sh " + this.getDir("raw",0) + "/editxml.sh");
-            Log.e(TAG, "I am in end of execute function");
-        } catch(Throwable t)
-        {
-            t.printStackTrace();
-        }
-
-    }
 
     @Override
     protected void onStart() {
@@ -288,10 +279,14 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             getMenuInflater().inflate(R.menu.main_activity_actions, menu);
             //the value should be read from outputs of script.
             String value = getResources().getString(R.string.LogoutButton);
-            Log.e(TAG, "value" + value);
-            if(value == "true")
+            Log.e(TAG, "value: " + value);
+
+            if (value.equals("true")) {
                 buttonVisible = true;
+            }
+
             Logout.setVisibleValue(buttonVisible);
+
             menu.findItem(R.id.action_logout).setVisible(Logout.getVisibleValue());
         }
         return super.onPrepareOptionsMenu(menu);
